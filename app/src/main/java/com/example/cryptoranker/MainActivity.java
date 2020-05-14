@@ -13,13 +13,8 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
-
     MyListAdapter adapter;
     RecyclerView view;
-
-    private ArrayList<String> texts = new ArrayList<>();
-    private ArrayList<String> images = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
