@@ -37,6 +37,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Glide.with(context).asBitmap().load(images.get(position)).into(holder.image);
         holder.label.setText(data.get(position).getName());
+        holder.value.setText(String.valueOf(data.get(position).getMax_supply()));
     }
 
     public void set(List<Data> data) {
@@ -55,6 +56,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         public CircleImageView image;
         TextView label;
+        TextView value;
         RelativeLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
@@ -62,6 +64,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
             image = itemView.findViewById(R.id.image);
             label = itemView.findViewById(R.id.label);
+            value = itemView.findViewById(R.id.value);
             layout = itemView.findViewById(R.id.parent_layout);
         }
     }
