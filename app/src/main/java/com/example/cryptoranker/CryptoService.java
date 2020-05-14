@@ -17,12 +17,9 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class CryptoService extends Service {
     private static final String uri = "https://pro-api.coinmarketcap.com/v1/";
     private volatile boolean running;
-    List<Data> cryptoList = new ArrayList<>();
 
     private Retrofit retrofit;
     private CryptoWebService cryptoWebService;
@@ -30,6 +27,11 @@ public class CryptoService extends Service {
     //Thread Stuff
     private Thread workerThread;
 
+    static List<IListener> listeners = new ArrayList<>();
+
+    static void add(IListener listener) {
+        listeners.add(listener);
+    }
 
     /* The format we want our API to return */
     private static final String start = "1";
@@ -51,7 +53,7 @@ public class CryptoService extends Service {
         super.onCreate();
 
         running = true;
-        System.out.println(uri);
+
         //Instantiate retrofit
         retrofit = new Retrofit.Builder().baseUrl(uri)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -62,7 +64,6 @@ public class CryptoService extends Service {
 
         //create thread
         workerThread = new Thread(new Runnable() {
-
             @Override
             public void run() {
                 while(running){
@@ -71,9 +72,14 @@ public class CryptoService extends Service {
                         call.enqueue(new Callback<Crypto>() {
                             @Override
                             public void onResponse(Call<Crypto> call, Response<Crypto> response) {
-                                assert response.body() != null;
-                                cryptoList = response.body().getData();
+
+                                for (IListener listener : CryptoService.listeners) {
+                                    listener.exec(response.body().getData());
+                                }
+
                                 Log.i("test", "Cryptos = response.body()");
+
+
                             }
 
                             @Override
@@ -81,9 +87,6 @@ public class CryptoService extends Service {
                                 Log.i("autolog", t.getMessage());
                             }
                         });
-
-
-
                     //Have thread sleep for 10 seconds (10.000 ms)
                     try {
                         Thread.sleep(100000);
@@ -95,11 +98,7 @@ public class CryptoService extends Service {
             }
         });
 
-    workerThread.start();
-    }
-
-    public List<Data> getCryptos() {
-        return cryptoList;
+        workerThread.start();
     }
 
 
@@ -108,16 +107,13 @@ public class CryptoService extends Service {
         // Stop running the thread
         running = false;
         super.onDestroy();
-        try {
-            workerThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Log.i("service_exercise",
-                "JokeAndroidService onDestroy - Current Thread ID-"
+                "CryptoService onDestroy - Current Thread ID-"
                         + Thread.currentThread().getId()
                         + " for thread"
                         + Thread.currentThread().getName());
+
+        workerThread = null;
     }
 
     @Nullable
