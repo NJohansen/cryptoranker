@@ -12,19 +12,11 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class BaseActivity extends AppCompatActivity {
-    List<Data> cryptoList = new ArrayList<>();
 
     protected CryptoService cryptoService;
     protected boolean mBound;
-
-    RecyclerView view;
 
 
     @Override
@@ -64,23 +56,6 @@ public class BaseActivity extends AppCompatActivity {
             mBound = false;
         }
     };
-
-
-
-    public void updateList(){
-
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mBound) {
-                    for (Data data : cryptoService.getCryptos()) {
-                        cryptoList.add(data);
-                    }
-                }
-            }
-        });
-
-    }
 
 
     @Override

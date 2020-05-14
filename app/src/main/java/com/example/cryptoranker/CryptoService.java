@@ -14,10 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import androidx.annotation.Nullable;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -25,7 +22,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class CryptoService extends Service {
     private static final String uri = "https://pro-api.coinmarketcap.com/v1/";
     private volatile boolean running;
-    private List<Data> cryptos;
+    List<Data> cryptoList = new ArrayList<>();
 
     private Retrofit retrofit;
     private CryptoWebService cryptoWebService;
@@ -74,10 +71,8 @@ public class CryptoService extends Service {
                         call.enqueue(new Callback<Crypto>() {
                             @Override
                             public void onResponse(Call<Crypto> call, Response<Crypto> response) {
-                                cryptos = response.body().getData();
-//                                for (Data data : cryptos){
-//                                    System.out.println(data.getName() + data.getCmc_rank());
-//                                }
+                                assert response.body() != null;
+                                cryptoList = response.body().getData();
                                 Log.i("test", "Cryptos = response.body()");
                             }
 
@@ -104,7 +99,7 @@ public class CryptoService extends Service {
     }
 
     public List<Data> getCryptos() {
-        return cryptos;
+        return cryptoList;
     }
 
 
