@@ -95,9 +95,6 @@ public class CryptoService extends Service {
                                 Log.i("autolog", t.getMessage());
                             }
                         });
-
-
-
                     //Have thread sleep for 10 seconds (10.000 ms)
                     try {
                         Thread.sleep(100000);
