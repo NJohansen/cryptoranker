@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -33,6 +34,11 @@ public class CryptoService extends Service {
     //Thread Stuff
     private Thread workerThread;
 
+    static List<IListener> listeners = new ArrayList<>();
+
+    static void add(IListener listener) {
+        listeners.add(listener);
+    }
 
     /* The format we want our API to return */
     private static final String start = "1";
@@ -75,10 +81,14 @@ public class CryptoService extends Service {
                             @Override
                             public void onResponse(Call<Crypto> call, Response<Crypto> response) {
                                 cryptos = response.body().getData();
-//                                for (Data data : cryptos){
-//                                    System.out.println(data.getName() + data.getCmc_rank());
-//                                }
+
+                                for (IListener listener : CryptoService.listeners) {
+                                    listener.exec(response.body().getData());
+                                }
+
                                 Log.i("test", "Cryptos = response.body()");
+
+
                             }
 
                             @Override
@@ -100,11 +110,7 @@ public class CryptoService extends Service {
             }
         });
 
-    workerThread.start();
-    }
-
-    public List<Data> getCryptos() {
-        return cryptos;
+        workerThread.start();
     }
 
 

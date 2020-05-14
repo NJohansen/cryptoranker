@@ -18,7 +18,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
-
     private List<Data> data = new ArrayList<>();
     private Context context;
 
@@ -38,6 +37,11 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Glide.with(context).asBitmap().load(images.get(position)).into(holder.image);
         holder.label.setText(data.get(position).getName());
+    }
+
+    public void set(List<Data> data) {
+        this.data = data;
+        notifyDataSetChanged();
     }
 
     @Override

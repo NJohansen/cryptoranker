@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
+    MyListAdapter adapter;
     RecyclerView view;
 
     private ArrayList<String> texts = new ArrayList<>();
@@ -25,23 +26,19 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //updateList();
         view = (RecyclerView) findViewById(R.id.list);
-        RecyclerView.Adapter adapter = new MyListAdapter(this, cryptoList);
+        adapter = new MyListAdapter(this, new ArrayList<>());
         view.setAdapter(adapter);
         view.setLayoutManager(new LinearLayoutManager(this));
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mBound) {
-                    for (Data data : cryptoService.getCryptos()) {
-                        cryptoList.add(data);
-                    }
-                    adapter.notifyDataSetChanged();
-                }
-            }
+        CryptoService.add((data) -> {
+            adapter.set(data);
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        CryptoService.listeners = new ArrayList<>();
+    }
 }

@@ -19,24 +19,16 @@ import java.util.List;
 
 
 public class BaseActivity extends AppCompatActivity {
-    List<Data> cryptoList = new ArrayList<>();
-
     protected CryptoService cryptoService;
-    protected boolean mBound;
-
-    RecyclerView view;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Bind to CryptoService
         Intent intent = new Intent(this, CryptoService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
@@ -54,33 +46,13 @@ public class BaseActivity extends AppCompatActivity {
             // Bind CryptoService and cast the IBinder and get CryptoService instance
             CryptoService.CryptoServiceBinder binder = (CryptoService.CryptoServiceBinder) service;
             cryptoService = binder.getService();
-            mBound = true;
-
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.e("Problem", "Service disconnected");
-            mBound = false;
         }
     };
-
-
-
-    public void updateList(){
-
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mBound) {
-                    for (Data data : cryptoService.getCryptos()) {
-                        cryptoList.add(data);
-                    }
-                }
-            }
-        });
-
-    }
 
 
     @Override
