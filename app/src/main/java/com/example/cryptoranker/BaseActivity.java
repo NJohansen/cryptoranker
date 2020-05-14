@@ -24,13 +24,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = new Intent(this, CryptoService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this, CryptoService.class);
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
     /** Defines callbacks for service binding, passed to bindService() */
@@ -38,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.i("service_exercise",
-                    "CryptoService onDestroy - Current Thread ID-"
+                    "ServiceConnection onServiceConnected - Current Thread ID-"
                             + Thread.currentThread().getId()
                             + " for thread"
                             + Thread.currentThread().getName());

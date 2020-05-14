@@ -60,7 +60,7 @@ public class CryptoService extends Service {
         super.onCreate();
 
         running = true;
-        System.out.println(uri);
+
         //Instantiate retrofit
         retrofit = new Retrofit.Builder().baseUrl(uri)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -71,7 +71,6 @@ public class CryptoService extends Service {
 
         //create thread
         workerThread = new Thread(new Runnable() {
-
             @Override
             public void run() {
                 while(running){
@@ -119,16 +118,13 @@ public class CryptoService extends Service {
         // Stop running the thread
         running = false;
         super.onDestroy();
-        try {
-            workerThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Log.i("service_exercise",
-                "JokeAndroidService onDestroy - Current Thread ID-"
+                "CryptoService onDestroy - Current Thread ID-"
                         + Thread.currentThread().getId()
                         + " for thread"
                         + Thread.currentThread().getName());
+
+        workerThread = null;
     }
 
     @Nullable
