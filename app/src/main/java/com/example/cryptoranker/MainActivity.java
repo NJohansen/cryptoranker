@@ -14,19 +14,29 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+
 public class MainActivity extends BaseActivity {
     MyListAdapter adapter;
-    RecyclerView view;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        view = (RecyclerView) findViewById(R.id.list);
+        initList();
+
+    }
+
+    private void initList(){
+        //Find recyclerview
+        recyclerView = findViewById(R.id.list);
+
+        // Create MyListAdapter ready to pass data
         adapter = new MyListAdapter(this, new ArrayList<>());
-        view.setAdapter(adapter);
-        view.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         CryptoService.add((data) -> {
             adapter.set(data);
@@ -38,4 +48,5 @@ public class MainActivity extends BaseActivity {
         super.onStop();
         CryptoService.listeners = new ArrayList<>();
     }
+
 }
