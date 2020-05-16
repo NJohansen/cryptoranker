@@ -1,12 +1,29 @@
 package com.example.cryptoranker;
 
-public class Data {
-    private int id;
-    private String name;
-    private String symbol;
-    private double circulating_supply;
-    private double max_supply;
-    private int cmc_rank;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class Data implements Serializable {
+    private static final long serialVersionUID = 42L;
+    @SerializedName("id")
+    @Expose private int id;
+    @SerializedName("name")
+    @Expose private String name;
+    @SerializedName("symbol")
+    @Expose private String symbol;
+    @SerializedName("circulating_supply")
+    @Expose private double circulating_supply;
+    @SerializedName("max_supply")
+    @Expose private double max_supply;
+    @SerializedName("cmc_rank")
+    @Expose private int cmc_rank;
+    @SerializedName("quote")
+    @Expose private Quote quote;
+
+    private String description;
+    private String logo;
 
     public int getId() {
         return id;
@@ -22,6 +39,14 @@ public class Data {
 
     public double getMax_supply() {
         return max_supply;
+    }
+
+    public Quote getQuote() {
+        return quote;
+    }
+
+    public void setQuote(Quote quote) {
+        this.quote = quote;
     }
 
     public double getCirculating_supply() {
@@ -56,7 +81,20 @@ public class Data {
         this.cmc_rank = cmc_rank;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
+    public String getLogo() {
+        return logo;
+    }
 
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 }
+

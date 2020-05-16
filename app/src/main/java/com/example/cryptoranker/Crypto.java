@@ -1,10 +1,17 @@
 package com.example.cryptoranker;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Crypto {
-    private Status status;
-    private List<Data> data;
+public class Crypto implements Serializable {
+    private static final long serialVersionUID = 523L;
+    @SerializedName("status")
+    @Expose private Status status;
+    @SerializedName("data")
+    @Expose private List<Data> data;
 
     public Status getStatus(){
         return status;
