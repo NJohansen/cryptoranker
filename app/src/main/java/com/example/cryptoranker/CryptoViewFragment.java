@@ -39,6 +39,10 @@ public class CryptoViewFragment extends Fragment {
 
     public void setData(List<Data> data) {
         this.data = data;
+
+        if (currentPosition >= 0) {
+            this.updateCryptoView(currentPosition);
+        }
     }
 
     @Override
