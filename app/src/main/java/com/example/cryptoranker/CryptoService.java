@@ -153,7 +153,6 @@ public class CryptoService extends Service {
         workerThread.start();
     }
 
-
     @Override
     public void onDestroy() {
         // Stop running the thread
