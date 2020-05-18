@@ -20,6 +20,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
     private List<Data> dataList = new ArrayList<>();
     private Context context;
+    private OnClickListener onClickListener;
+
+    public interface OnClickListener {
+        public void onClick(int position);
+    }
 
     public MyListAdapter(Context context, List<Data> data) {
         this.dataList = data;
@@ -38,13 +43,22 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Data data = dataList.get(position);
-
         Glide.with(context).asBitmap().load(data.getLogo()).into(holder.image);
         holder.label.setText(data.getName());
         holder.value.setText("1 " + data.getSymbol()+ " = " + String.format("$%.2f", data.getQuote().getUsd().getPrice()) );
         holder.price_change.setText(String.format("%.2f", data.getQuote().getUsd().getPercentChange24h()) + "%");
         holder.cmc_rank.setText(String.valueOf(data.getCmc_rank()));
+        ((View) holder.label.getParent()).setOnClickListener(view -> {
+            if (onClickListener == null) {
+                return;
+            }
 
+            onClickListener.onClick(position);
+        });
+    }
+
+    public void onClick(OnClickListener listener) {
+        onClickListener = listener;
     }
 
     public void set(List<Data> data) {
