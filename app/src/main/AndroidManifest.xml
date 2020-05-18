@@ -3,7 +3,8 @@
     package="com.example.cryptoranker">
     
     <uses-permission android:name="android.permission.INTERNET" />
-    
+    <permission android:name="com.example.cryptoranker.provider.READ_WRITE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ExampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +20,12 @@
             </intent-filter>
         </activity>
         <service android:name=".CryptoService" android:exported="false"></service>
+
+        <provider
+            android:name=".provider.CryptoProvider"
+            android:authorities="com.example.cryptoranker.provider"
+            android:exported="true"
+            android:permission="com.example.cryptoranker.provider.READ_WRITE"/>
     </application>
 
 </manifest>
