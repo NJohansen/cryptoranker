@@ -109,15 +109,18 @@ public class CryptoService extends Service {
                                     CryptoInfo body = response.body();
                                     // Map objects into Map
                                     Map<String, CryptoInfoMeta> map = body.getCryptoInfoDataMap();
+                                    Map<Integer, String> descList = new HashMap<>();
 
                                     // Add logos with ID's to Hashmap
                                     for(CryptoInfoMeta metadata : map.values()){
                                         logoList.put(metadata.getId(), metadata.getLogo());
+                                        descList.put(metadata.getId(), metadata.getDescription());
                                     }
 
                                     //Set logos to each cryptodata
                                     for(Data data : cryptolist){
                                         data.setLogo(logoList.get(data.getId()));
+                                        data.setDescription(descList.get(data.getId()));
                                     }
 
                                     for (IListener listener : CryptoService.listeners) {
