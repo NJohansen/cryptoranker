@@ -18,11 +18,10 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase singleton;
 
     public static synchronized AppDatabase getInstance(Context context){
-
         if(singleton == null){
 
-            //Create new database object
-            singleton = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DBNAME).build();
+            //Create new database object and whipe database
+            singleton = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DBNAME).fallbackToDestructiveMigration().build();
         }
         return singleton;
     }

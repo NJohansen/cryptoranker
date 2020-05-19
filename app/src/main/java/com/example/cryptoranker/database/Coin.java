@@ -39,10 +39,4 @@ public class Coin {
         }
         return coin;
     }
-
-    static final String[] COINS = {
-            "Bitcoin", "Ethereum", "XRP"
-    };
-
-
 }

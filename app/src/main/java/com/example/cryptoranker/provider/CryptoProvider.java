@@ -18,13 +18,6 @@ import com.example.cryptoranker.database.CoinDao;
 
 public class CryptoProvider extends ContentProvider  {
 
-    //Define handle for the app database.
-    private AppDatabase appDatabase;
-
-    //Define Data Access Object so we can perform operations to the database.
-    private CoinDao coinDao;
-
-
     //Define the authority of the content provider
     public static final String AUTHORITY = "com.example.cryptoranker.provider";
     //Define URI for the coin table

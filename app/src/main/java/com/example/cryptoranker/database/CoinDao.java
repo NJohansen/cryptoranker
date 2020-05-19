@@ -22,6 +22,9 @@ public interface CoinDao {
     @Delete
     void delete(Coin coin);
 
+    @Query("DELETE FROM " + Coin.TABLE_NAME)
+    void deleteAll();
+
     @Query("SELECT COUNT(*) FROM " + Coin.TABLE_NAME)
     int count();
 }
