@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity {
             public void handleOnBackPressed() {
                 // Handle the back button event
                 initList(savedInstanceState);
+                view = null;
             }
         };
 
