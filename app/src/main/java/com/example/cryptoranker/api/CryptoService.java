@@ -146,7 +146,7 @@ public class CryptoService extends Service {
 
                     //Have thread sleep for 10 seconds (10.000 ms)
                     try {
-                        Thread.sleep(100000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
