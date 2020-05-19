@@ -1,4 +1,4 @@
-package com.example.cryptoranker;
+package com.example.cryptoranker.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -29,7 +29,7 @@ public class Data implements Serializable {
         return id;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -53,7 +53,7 @@ public class Data implements Serializable {
         return circulating_supply;
     }
 
-    int getCmc_rank() {
+    public int getCmc_rank() {
         return cmc_rank;
     }
 

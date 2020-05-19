@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.cryptoranker.api.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CryptoViewFragment extends Fragment {
     final static String ARG_POSITION = "position";
-    int currentPosition = -1;
+    private int currentPosition = -1;
     private View view;
     private List<Data> data = new ArrayList<>();
 
@@ -33,7 +34,7 @@ public class CryptoViewFragment extends Fragment {
         }
 
         // Inflate the layout for this fragment
-        view = (View) inflater.inflate(R.layout.crypto_view, container, false);
+        view = inflater.inflate(R.layout.crypto_view, container, false);
         return view;
     }
 
@@ -64,9 +65,9 @@ public class CryptoViewFragment extends Fragment {
     }
 
     public void updateCryptoView(int position) {
-        TextView label = (TextView) view.findViewById(R.id.label);
-        TextView price = (TextView) view.findViewById(R.id.price_change);
-        CircleImageView image = (CircleImageView) view.findViewById(R.id.image);
+        TextView label =  view.findViewById(R.id.label);
+        TextView price =  view.findViewById(R.id.price_change);
+        CircleImageView image =  view.findViewById(R.id.image);
 
         Glide.with(getContext()).asBitmap().load(data.get(position).getLogo()).into(image);
 
@@ -79,7 +80,7 @@ public class CryptoViewFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        // Save the current article selection in case we need to recreate the fragment
+        // Save the current selection in case we need to recreate the fragment
         outState.putInt(ARG_POSITION, currentPosition);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.cryptoranker;
+package com.example.cryptoranker.api;
 
 import android.app.Service;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import androidx.annotation.Nullable;
+
+import com.example.cryptoranker.IListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +39,7 @@ public class CryptoService extends Service {
     static List<String> idList = new ArrayList<>();
     static HashMap<Integer, String> logoList = new HashMap<>();
 
-    static void add(IListener listener) {
+    public static void add(IListener listener) {
         listeners.add(listener);
     }
 
@@ -50,8 +52,8 @@ public class CryptoService extends Service {
 
     private final IBinder mBinder = new CryptoServiceBinder();
 
-    class CryptoServiceBinder extends Binder{
-        CryptoService getService(){
+    public class CryptoServiceBinder extends Binder{
+        public CryptoService getService(){
             return CryptoService.this;
         }
     }
@@ -152,7 +154,6 @@ public class CryptoService extends Service {
 
         workerThread.start();
     }
-
 
     @Override
     public void onDestroy() {

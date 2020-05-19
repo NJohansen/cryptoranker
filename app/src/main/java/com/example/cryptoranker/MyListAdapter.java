@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cryptoranker.api.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         public void onClick(int position);
     }
 
-    public MyListAdapter(Context context, List<Data> data) {
+    MyListAdapter(Context context, List<Data> data) {
         this.dataList = data;
         this.context = context;
     }

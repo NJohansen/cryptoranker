@@ -1,6 +1,5 @@
 package com.example.cryptoranker;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +10,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cryptoranker.api.CryptoService;
 
 public class BaseActivity extends AppCompatActivity {
     protected CryptoService cryptoService;
