@@ -12,8 +12,8 @@ This list includes prices in USD, logos and 24 hours changes in percentage.
 
 * Displays A list with asset name, price, latest 24 hours percent change and asset logo for the top 50 cryptos
 * Comes with a content provider so Crypto data can be used in other apps through the provided ContentProvider
-* Uses fragtments to provide single views for phones and a two pane view for tablets for each crypto with logo,
-  crypto description and price.
+* Uses fragments to provide single views for phones and a two pane view for tablets that contains crypto information as name, logo,
+  description and price.
 
 ## How to test the ContentProvider(CryptoProvider)?
 To test the ContentProvider or so called CryptoProvider you will have to change the activity in the `AndroidManifest.xml`.
