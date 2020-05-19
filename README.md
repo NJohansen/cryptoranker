@@ -3,7 +3,7 @@
 
 :iphone: Android app which displays top 50 currencies with live data.
 
-<img src="Images/image1.png" height='auto' width='270'/><img src="Images/image2.png" height='auto' width='270'/>
+<img src="Images/image1.png" height='auto' width='270'/><img src="Images/Image2.png" height='auto' width='270'/>
 
 Cryptoranker is an Android app that lists top 50 of cryptocurrencies. 
 This list includes prices in USD, logos and 24 hours changes in percentage. 
