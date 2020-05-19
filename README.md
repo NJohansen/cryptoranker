@@ -28,7 +28,4 @@ This is required for internet connection so we can get data for the Coinmarketca
 
 ## Sources
 
-* <a href="https://min-api.cryptocompare.com/">CryptoCompare min-api</a>: This API is currently only used for Markets and News
-* <a href="https://coinmarketcap.com/">CoinMarketCap</a>: Huge thanks to CoinMarketCap! Without their APIs this app would not be possible. They are the backend for chart data, coin images, market caps, volume, prices, and percent changes
-* <a href="https://shields.io/">shields.io</a>: Provides the beautiful build badges at the top of this README
-* <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
+* <a href="https://coinmarketcap.com/">CoinMarketCap</a>: Provides all the data on the currencies
