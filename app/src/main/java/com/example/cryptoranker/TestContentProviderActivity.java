@@ -6,16 +6,19 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cryptoranker.database.Coin;
 import com.example.cryptoranker.provider.CryptoProvider;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //Test activity that show content provider works for querying data
-public class ExampleActivity extends AppCompatActivity {
+public class TestContentProviderActivity extends AppCompatActivity {
     RecyclerView coinRecyclerView;
     CoinRetriever coinRetriever;
 
@@ -62,12 +65,7 @@ public class ExampleActivity extends AppCompatActivity {
 
             cursor = cr.query(uri, mProjection, null, null, null);
 
-            //Add content to database through contentprovier
-            //ContentValues newValues = new ContentValues();
-            //newValues.put(Coin.COLUMN_ASSET_NAME, "DogeCoin");
-            //newValues.put(Coin.COLUMN_PRICE, "22.00");
-            //cr.insert(uri,newValues);
-
+            assert cursor != null;
             while (cursor.moveToNext()){
                 Coin coin = new Coin();
                 coin.uid = cursor.getLong(0);

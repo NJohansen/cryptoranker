@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cryptoranker.ExampleActivity">
+    tools:context="com.example.cryptoranker.TestContentProviderActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_view"

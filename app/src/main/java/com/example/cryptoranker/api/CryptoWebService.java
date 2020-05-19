@@ -1,6 +1,4 @@
-package com.example.cryptoranker;
-
-import java.util.Map;
+package com.example.cryptoranker.api;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

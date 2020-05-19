@@ -14,8 +14,7 @@ import com.example.cryptoranker.database.Coin;
 import java.util.List;
 
 public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.ViewHolder> {
-    List<Coin> coinList;
-    private Cursor mCursor;
+    private List<Coin> coinList;
 
     public CoinAdapter(List<Coin> coinList) {
         this.coinList = coinList;
@@ -42,7 +41,6 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.ViewHolder> {
     }
 
     void setCoins(Cursor cursor) {
-        mCursor = cursor;
         notifyDataSetChanged();
     }
 
