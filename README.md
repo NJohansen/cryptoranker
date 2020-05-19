@@ -1,5 +1,6 @@
 # Cryptoranker
 [![platform](https://img.shields.io/badge/platform-Android-brightgreen.svg)](https://www.android.com)
+
 :iphone: Android app which displays top 50 currencies with live data.
 
 Cryptoranker is an Android app that lists top 50 of cryptocurrencies. 
