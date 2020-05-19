@@ -14,6 +14,18 @@ This list includes prices in USD, logos and 24 hours changes in percentage.
 * Comes with a content provider so Crypto data can be used in other apps through the provided ContentProvider 
 * Uses fragtments to provide single views for each crypto with logo, crypto description and price.
 
+## Test the Content Provider
+To test the ContentProvider or so called CryptoProvider you will have to change the activity in the `AndroidManifest.xml`.
+You'll have to replace the following activity:
+```
+<activity android:name=".MainActivity">
+```
+With the TestContentProviderActivity
+```
+<activity android:name=".TestContentProviderActivity">
+```
+When you then rebuild and run the app you will get a recycleview with the 50 cryptocurrencies from the database which is provided by the CryptoProvider. 
+
 ## Libraries Used
 
 * <a href="https://developer.android.com/topic/libraries/architecture/room">Room</a>: Library used for easier database access and as abstraction layer on top of SQlite.
