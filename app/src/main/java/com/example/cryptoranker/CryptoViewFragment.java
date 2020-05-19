@@ -65,14 +65,17 @@ public class CryptoViewFragment extends Fragment {
     }
 
     public void updateCryptoView(int position) {
-        TextView label =  view.findViewById(R.id.label);
-        TextView price =  view.findViewById(R.id.price_change);
-        CircleImageView image =  view.findViewById(R.id.image);
+        TextView label = (TextView) view.findViewById(R.id.label);
+        TextView price = (TextView) view.findViewById(R.id.price_change);
+        TextView description = (TextView) view.findViewById(R.id.description);
+        CircleImageView image = (CircleImageView) view.findViewById(R.id.image);
 
         Glide.with(getContext()).asBitmap().load(data.get(position).getLogo()).into(image);
 
         label.setText(data.get(position).getName());
-        price.setText("1 " + data.get(position).getSymbol()+ " = " + String.format("$%.2f", data.get(position).getQuote().getUsd().getPrice()) );
+        price.setText("1 " + data.get(position).getSymbol()+ " = " + String.format("$%.2f", data.get(position).getQuote().getUsd().getPrice()));
+        System.out.println(data.get(position).getDescription());
+        description.setText(data.get(position).getDescription());
         currentPosition = position;
     }
 
